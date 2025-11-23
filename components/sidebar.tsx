@@ -38,7 +38,7 @@ export default function Sidebar() {
             G
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-800">GCP Project Name</p>
+            <p className="text-sm font-semibold text-gray-800">GCP Project</p>
             <p className="text-xs text-gray-500">project-id-12345</p>
           </div>
         </div>

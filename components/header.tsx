@@ -37,7 +37,7 @@ export default function Header() {
         </button>
         {/* Avatar del Usuario */}
         <div className="w-8 h-8 rounded-full bg-purple-200 flex items-center justify-center text-purple-700 font-medium cursor-pointer text-sm">
-          M
+          G
         </div>
       </div>
     </header>
