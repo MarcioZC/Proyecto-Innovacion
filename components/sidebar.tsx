@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   FolderOpenIcon,
   ChartBarIcon,
@@ -9,31 +12,31 @@ import {
   Cog6ToothIcon,
   QuestionMarkCircleIcon,
   PlusIcon,
-  MagnifyingGlassIcon, // Añadido para la Búsqueda IA
-  DocumentCheckIcon,   // Añadido para la Auditoría Workspace
+  MagnifyingGlassIcon,
+  DocumentCheckIcon,
 } from '@heroicons/react/24/outline';
 
 export default function Sidebar() {
-  // Las rutas de navegación ahora reflejan tu nueva estructura de carpetas en 'app'
+  // Obtenemos la ruta actual
+  const pathname = usePathname();
+
+  // Las rutas de navegación
   const navItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon, current: true }, // Marcado como actual
-    { name: 'BigQuery', href: '/bigquery', icon: FolderOpenIcon, current: false },
-    { name: 'Vertex AI', href: '/vertex-ai', icon: CpuChipIcon, current: false },
-    { name: 'Monitoring', href: '/monitoring', icon: BellIcon, current: false },
-    { name: 'Billing', href: '/billing', icon: CreditCardIcon, current: false },
-    // NUEVOS ENLACES CLAVE DE INNOVACIÓN:
-    { name: 'AI Search (B2C)', href: '/ai-search', icon: MagnifyingGlassIcon, current: false },
-    { name: 'Workspace Auditoria', href: '/workspace-auditoria', icon: DocumentCheckIcon, current: false },
+    { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
+    { name: 'BigQuery', href: '/bigquery', icon: FolderOpenIcon },
+    { name: 'Vertex AI', href: '/vertex-ai', icon: CpuChipIcon },
+    { name: 'Monitoring', href: '/monitoring', icon: BellIcon },
+    { name: 'Billing', href: '/billing', icon: CreditCardIcon },
+    { name: 'AI Search (B2C)', href: '/ai-search', icon: MagnifyingGlassIcon },
+    { name: 'Workspace Auditoria', href: '/workspace-auditoria', icon: DocumentCheckIcon },
   ];
 
   return (
-    // El ancho de 64 (w-64) define el tamaño de la barra lateral
     <div className="w-64 bg-white border-r border-gray-200 p-4 flex flex-col justify-between shadow-sm shrink-0">
       {/* Sección Superior: Detalles del Proyecto y Navegación */}
       <div>
         {/* Nombre e ID del Proyecto */}
         <div className="flex items-center space-x-2 mb-6 p-2">
-          {/* Avatar del Proyecto */}
           <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm">
             G
           </div>
@@ -45,15 +48,23 @@ export default function Sidebar() {
 
         {/* Enlaces de Navegación */}
         <nav className="space-y-1">
-          {navItems.map((item) => (
-            // Uso de la ruta directamente, ya que la navegación lateral no necesita el prefijo '/dashboard'
-            <Link key={item.name} href={item.href} className={`flex items-center p-3 rounded-lg text-sm font-medium transition-colors ${
-              item.current ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-700 hover:bg-gray-100'
-            }`}>
+          {navItems.map((item) => {
+            // Verificamos si la ruta actual coincide con el href del item
+            const isActive = pathname === item.href;
+            
+            return (
+              <Link 
+                key={item.name} 
+                href={item.href} 
+                className={`flex items-center p-3 rounded-lg text-sm font-medium transition-colors ${
+                  isActive ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-700 hover:bg-gray-100'
+                }`}
+              >
                 <item.icon className="w-5 h-5 mr-3" />
                 {item.name}
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </nav>
       </div>
 
@@ -61,17 +72,17 @@ export default function Sidebar() {
       <div className="space-y-2">
         {/* Botón Principal de Acción */}
         <button className="w-full bg-blue-600 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center shadow-md">
-            <PlusIcon className="w-5 h-5 mr-2" /> Create Resource
+          <PlusIcon className="w-5 h-5 mr-2" /> Create Resource
         </button>
 
         {/* Enlaces de Utilidad */}
         <Link href="/settings" className="flex items-center p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
-            <Cog6ToothIcon className="w-5 h-5 mr-3" />
-            Settings
+          <Cog6ToothIcon className="w-5 h-5 mr-3" />
+          Settings
         </Link>
         <Link href="/help" className="flex items-center p-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
-            <QuestionMarkCircleIcon className="w-5 h-5 mr-3" />
-            Help
+          <QuestionMarkCircleIcon className="w-5 h-5 mr-3" />
+          Help
         </Link>
       </div>
     </div>

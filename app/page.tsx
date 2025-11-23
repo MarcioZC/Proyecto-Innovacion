@@ -1,65 +1,159 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Home() {
+export default function HomePage() {
+  const services = [
+    {
+      icon: '📊',
+      title: 'Dashboard',
+      description: 'Visualiza métricas clave y el rendimiento de tus aplicaciones en un solo lugar.',
+      color: 'text-blue-500',
+      href: '/dashboard'
+    },
+    {
+      icon: '🗄️',
+      title: 'BigQuery',
+      description: 'Analiza grandes volúmenes de datos rápidamente con nuestro almacén de datos sin servidor.',
+      color: 'text-green-500',
+      href: '/bigquery'
+    },
+    {
+      icon: '🔍',
+      title: 'AI Search',
+      description: 'Implementa búsqueda de nivel de consumidor en tus aplicaciones con IA avanzada.',
+      color: 'text-purple-500',
+      href: '/ai-search'
+    },
+    {
+      icon: '📱',
+      title: 'Workspace',
+      description: 'Colabora y desarrolla tus proyectos de IA en un entorno de trabajo integrado.',
+      color: 'text-blue-500',
+      href: '/workspace-auditoria'
+    },
+    {
+      icon: '🧠',
+      title: 'Vertex AI',
+      description: 'Construye, despliega y escala modelos de machine learning con una plataforma unificada.',
+      color: 'text-green-500',
+      href: '/vertex-ai'
+    },
+    {
+      icon: '📈',
+      title: 'Monitoring',
+      description: 'Supervisa el rendimiento, la disponibilidad y la salud de tus servicios en la nube.',
+      color: 'text-purple-500',
+      href: '/monitoring'
+    },
+    {
+      icon: '💳',
+      title: 'Billing',
+      description: 'Gestiona tus costos y entiende tu gasto en la nube con herramientas de facturación.',
+      color: 'text-blue-500',
+      href: '/billing'
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="flex items-center justify-between px-4 sm:px-10 py-4 border-b border-gray-200 bg-white">
+        <div className="flex items-center gap-3">
+          {/* Diamante azul 🔷 */}
+          <span className="text-3xl">🔷</span>
+          <h2 className="text-lg font-bold text-gray-900">Plataforma IA Responsable</h2>
+        </div>
+        <nav className="hidden md:flex items-center gap-8">
+          <Link href="/dashboard" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+            Visión General IA
+          </Link>
+          <Link href="/dashboard" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+            Sobre Nosotros
+          </Link>
+          <Link href="/dashboard" className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+            Contacto
+          </Link>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="flex flex-col items-center text-center px-4 py-20 max-w-6xl mx-auto">
+        <div className="flex flex-col gap-6 max-w-3xl mb-10">
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight">
+            Fortalece tu Nube con IA Responsable
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+          <p className="text-lg text-gray-600">
+            Desbloquea soluciones de IA potentes, escalables y éticas integradas perfectamente con Google Cloud Platform.
+          </p>
+          <div className="flex justify-center mt-4">
+            <Link 
+              href="/dashboard"
+              className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              Explorar Plataforma
+            </Link>
+          </div>
+        </div>
+
+        {/* Hero Image - Gemini (Imagen Local) */}
+        <div className="w-full max-w-5xl mt-10">
+          <div className="w-full aspect-2/1 relative rounded-xl shadow-2xl overflow-hidden">
+            <Image
+              src="/imagenes/gemini.jpg"
+              alt="Gemini AI Technology"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="px-4 py-20 max-w-6xl mx-auto">
+        <div className="flex flex-col items-center text-center gap-4 mb-12">
+          <h2 className="text-4xl font-bold text-gray-900">Sobre la plataforma</h2>
+          <p className="text-base text-gray-600 max-w-2xl">
+            Descubre los pilares centrales de nuestra plataforma, diseñados para la seguridad, escalabilidad y transparencia en cada aplicación de IA.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid px-5 transition-colors hover:border-transparent dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => (
+            <Link
+              key={index}
+              href={service.href}
+              className="group flex flex-col gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all"
+            >
+              <span className={`text-4xl ${service.color}`}>{service.icon}</span>
+              <div className="text-left">
+                <p className="text-lg font-semibold text-gray-900 mb-2">{service.title}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{service.description}</p>
+              </div>
+            </Link>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-4 sm:px-10 py-8 border-t border-gray-200 bg-white">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 max-w-6xl mx-auto">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-gray-700">
+              2025 Plataforma IA Responsable. Todos los derechos reservados.
+            </span>
+          </div>
+          <div className="flex items-center gap-6 text-sm text-gray-600 font-medium">
+            <Link href="#" className="hover:text-blue-600 transition-colors">
+              Política de Privacidad
+            </Link>
+            <Link href="#" className="hover:text-blue-600 transition-colors">
+              Términos de Servicio
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
